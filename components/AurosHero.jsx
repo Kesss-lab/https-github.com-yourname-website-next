@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { SITE, NAV_LINKS, SERVICES } from "@/lib/content";
 
-export default function AurosHero() {
+export default function AurosHero({ session }) {
   return (
     <div className="min-h-screen text-white selection:bg-cyan-500 selection:text-black font-sans relative overflow-hidden">
       {/* Background Radial Glow */}
@@ -25,12 +25,26 @@ export default function AurosHero() {
             </a>
           ))}
         </div>
-        <a
-          href="#send-money"
-          className="px-5 py-2 text-sm font-medium rounded-full bg-white text-black hover:bg-neutral-200 transition-all"
-        >
-          Get a Quote
-        </a>
+        {session ? (
+          <a
+            href="/account"
+            className="px-5 py-2 text-sm font-medium rounded-full bg-white text-black hover:bg-neutral-200 transition-all"
+          >
+            Hi, {session.name}
+          </a>
+        ) : (
+          <div className="flex items-center gap-3">
+            <a href="/login" className="text-sm text-neutral-400 hover:text-white transition-colors">
+              Log In
+            </a>
+            <a
+              href="/register"
+              className="px-5 py-2 text-sm font-medium rounded-full bg-white text-black hover:bg-neutral-200 transition-all"
+            >
+              Register
+            </a>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
